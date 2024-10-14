@@ -1,38 +1,14 @@
 package com.example.todo.service.task;
 
-import lombok.RequiredArgsConstructor;
+import com.example.todo.controller.task.TaskDTO;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
-
 @Service
-@RequiredArgsConstructor
 public class TaskService {
-
-    private final TaskRepository taskRepository;
-
-    public List<TaskEntity> find(TaskSearchEntity searchEntity) {
-        return taskRepository.select(searchEntity);
-    }
-
-    public Optional<TaskEntity> findById(long taskId) {
-        return taskRepository.selectById(taskId);
-    }
-
-    @Transactional
-    public void create(TaskEntity newEntity) {
-        taskRepository.insert(newEntity);
-    }
-
-    @Transactional
-    public void update(TaskEntity entity) {
-        taskRepository.update(entity);
-    }
-
-    @Transactional
-    public void delete(long id) {
-        taskRepository.delete(id);
+    public List<TaskDTO> find() {
+        TaskDTO task1 = new TaskDTO(1L, "Spring Bootを学ぶ", "ToDoアプリケーションを作ってみる", "ToDO");
+        TaskDTO task2 = new TaskDTO(2L, "Spring Securityを学ぶ", "ログイン機能を作ってみる", "ToDO");
+        return  List.of(task1, task2);
     }
 }
